@@ -26,6 +26,11 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
+        .btn btn_dark {
+            .show {
+                display: block;
+            }
+        }
     }
     &__advantages {
         width: 330px;

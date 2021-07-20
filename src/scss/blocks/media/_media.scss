@@ -1,0 +1,21 @@
+@media (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+        
+    }
+}
+@media (max-width: 1024px) {
+    .offer {
+        &__text {
+            margin-left: 121px;
+        }
+        &__advantages {
+            margin-left: 121px;
+        }
+        &__slider {
+            margin-left: 121px;
+        }
+    }
+}
+
+    
