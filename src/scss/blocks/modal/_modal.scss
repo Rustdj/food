@@ -33,9 +33,6 @@
         border: none;
         background-color: transparent;
         cursor: pointer;
-        .hide {
-            display: none;
-        }
     }
     &__title {
         text-align: center;
@@ -60,5 +57,7 @@
         width: 280px;
         margin: 0 auto;
     }
+    
 }
+
 

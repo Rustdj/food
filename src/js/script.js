@@ -7,7 +7,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
           function hideTabContent() {
               tabsContent.forEach(item => {
-                  item.style.display = 'none';
+                  item.classList.add('hide');
+                  item.classList.remove('show', 'fade');
 
               });
 
@@ -18,7 +19,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
           }
           function showTabContent(i = 0) {
-              tabsContent[i].style.display = 'block';
+              tabsContent[i].classList.add('show', 'fade');
+              tabsContent[i].classList.remove('hide');
               tabs[i].classList.add('tabheader__item_active');
           }
 
@@ -106,13 +108,13 @@ window.addEventListener('DOMContentLoaded', () => {
     modalTrigger.addEventListener('click', () => {
         modal.classList.add('show');
         modal.classList.remove('hide');
-        document.body.style.overflow = 'hidden';
+        //document.body.style.overflow = 'hidden';
     });
 
     modalCloseBtn.addEventListener('click', () => {
         modal.classList.add('hide');
         modal.classList.remove('show');
-        document.body.style.overflow = '';
+        //document.body.style.overflow = '';
     });
 
 });
