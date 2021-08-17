@@ -215,7 +215,6 @@ class MenuCard {
             // отправдение POST на сервер Forms
 
             const forms = document.querySelectorAll('form');
-
             const message = {
                 loading: 'img/form/spinner.svg',
                 success: 'Спасибо! Скоро мы с вами свяжемся',
@@ -226,7 +225,19 @@ class MenuCard {
                 postData(item);
             });
 
-            function postData(form) {
+            const postData = async (url, data) => {
+                const res = await fetch(url, {
+                    method: "POST",
+                        headers: {
+                            'Content-type': 'application/json'
+                        },
+                        body: data
+                });
+
+                return res.json();
+            };
+
+            function bindPostData(form) {
                 form.addEventListener('submit', (e) => {
                     e.preventDefault();
 
@@ -236,7 +247,7 @@ class MenuCard {
                     display: block;
                     margin: 0 auto;
                     `;
-                    form.append(statusMessage);
+                    form.insertAdjacentElement('afterend', statusMessage);
                     
         
                     const formData = new FormData(form);
@@ -246,13 +257,7 @@ class MenuCard {
                         object[key] = value;
                     });
 
-                    fetch('server.php', {
-                        method: "POST",
-                        headers: {
-                            'Content-type': 'application/json'
-                        },
-                        body: formData
-                    }).then(data => data.text())
+                    postData('server.php', JSON.stringify(object))
                     .then(data => {
                         console.log(data);
                         showThanksModal(message.success);
@@ -291,7 +296,16 @@ class MenuCard {
                 }, 4000);
             }
 
-        // Fetch API----------------------
+            fetch('db.json')
+                .then(data => data.json())
+                .then(res => console.log(res));
+
+
+});
+
+
+
+// Fetch API----------------------
     // позволяет общаться с сервером, построена на промисах
     //fetch('https://jsonplaceholder.typicode.com/posts', {
             //method: "POST",
@@ -303,8 +317,7 @@ class MenuCard {
     //.then(response => response.json())
     //.then(json => console.log(json));
 
-
-});
+    // json-server - сервер по работе с json-файлами когда мы ее можем использовать как маленькую базу данных!
 
 // контекст вызова this
 
